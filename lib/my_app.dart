@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_profile/presentation/splash/splash_screen.dart';
 import 'package:dynamic_color/dynamic_color.dart';
@@ -16,10 +17,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-
     return DynamicColorBuilder(
       builder: (lightColorScheme, darkColorScheme){
-        return  MaterialApp(
+        return  GetMaterialApp(
           theme: ThemeData(
             // This is the theme of your application.
             //

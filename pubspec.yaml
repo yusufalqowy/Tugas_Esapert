@@ -40,6 +40,10 @@ dependencies:
   google_fonts: ^5.0.0
   flutter_app_name: ^0.1.1
   url_launcher: ^6.1.11
+  dio: ^5.2.1
+  get: ^4.6.5
+  auto_height_grid_view: any
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -53,7 +57,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter_app_name:
-  name: "My Profile"
+  name: "My Task"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -68,19 +72,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/lottie/avatar_profile_lottie.json
-    - assets/image/ic_android.png
-    - assets/image/ic_kotlin.png
-    - assets/image/ic_java.png
-    - assets/image/ic_rest_api.png
-    - assets/image/ic_git.png
-    - assets/image/ic_phone.png
-    - assets/image/ic_envelope.png
-    - assets/image/ic_address.png
-    - assets/image/ic_linkedin.png
-    - assets/image/ic_dribble.png
-    - assets/image/ic_instagram.png
-    - assets/image/my_photo_profile.jpg
-    - assets/image/ic_github.png
+    - assets/image/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
