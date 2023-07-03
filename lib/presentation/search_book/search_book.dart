@@ -1,24 +1,18 @@
 import 'package:auto_height_grid_view/auto_height_grid_view.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:my_profile/data/book/data_source/remote/book_api_client_impl.dart';
-import 'package:my_profile/data/book/repository/book_repository_impl.dart';
 import 'package:my_profile/data/data_state.dart';
-import 'package:my_profile/domain/book/use_case/book_use_case_impl.dart';
 import 'package:my_profile/presentation/component/book_item.dart';
 import 'package:my_profile/presentation/component/book_skeleton.dart';
-import 'package:my_profile/presentation/home/home_controller.dart';
 import 'package:my_profile/presentation/search_book/search_book_controller.dart';
 import 'package:my_profile/presentation/utils/AppLayout.dart';
 
-class SearchBookScreen extends StatelessWidget {
+class SearchBookScreen <C extends SearchBookController> extends GetView<C> {
   const SearchBookScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final SearchBookController controller = SearchBookController(bookUseCase: BookUseCaseImpl(repository: BookRepositoryImpl(bookApiClient: BookApiClientImpl(Dio()))));
     CancelToken cancelToken = CancelToken();
 
     void handleSearch(String text) async {
@@ -38,25 +32,23 @@ class SearchBookScreen extends StatelessWidget {
           SliverAppBar(
             automaticallyImplyLeading: false,
             floating: true,
-            title: Container(
-              child: TextField(
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.zero,
-                  labelStyle: const TextStyle(fontSize: 14),
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-                  floatingLabelBehavior: FloatingLabelBehavior.never,
-                  prefixIcon: const Icon(Icons.search),
-                  hintText: "Search book here",
-                ),
-                textInputAction: TextInputAction.search,
-                onChanged: (text){
-                  if(text.isNotEmpty){
-                    handleSearch(text);
-                  }else{
-                    controller.searchBookState(ResponseData.init());
-                  }
-                },
+            title: TextField(
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.zero,
+                labelStyle: const TextStyle(fontSize: 14),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                floatingLabelBehavior: FloatingLabelBehavior.never,
+                prefixIcon: const Icon(Icons.search),
+                hintText: "Search book here",
               ),
+              textInputAction: TextInputAction.search,
+              onChanged: (text){
+                if(text.isNotEmpty){
+                  handleSearch(text);
+                }else{
+                  controller.searchBookState(ResponseData.init());
+                }
+              },
             ),
           ),
           SliverFillRemaining(

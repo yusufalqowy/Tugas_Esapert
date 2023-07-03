@@ -8,7 +8,7 @@ import 'package:my_profile/data/data_state.dart';
 
 class BookApiClientImpl implements BookApiClient{
   final Dio client;
-  const BookApiClientImpl(this.client);
+  const BookApiClientImpl({required this.client});
   
   @override
   Future<ResponseData<BookResponse?>> getNewBook() async {

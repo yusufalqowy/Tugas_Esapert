@@ -1,19 +1,14 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_profile/data/book/data_source/remote/book_api_client_impl.dart';
-import 'package:my_profile/data/book/repository/book_repository_impl.dart';
-import 'package:my_profile/domain/book/use_case/book_use_case_impl.dart';
 import 'package:my_profile/presentation/detail_book/detail_book_controller.dart';
 import 'package:my_profile/presentation/utils/AppLayout.dart';
 
-class DetailBookScreen extends StatelessWidget {
-  final String isbn13;
-  const DetailBookScreen({super.key, required this.isbn13});
+class DetailBookScreen <C extends DetailBookController> extends GetView<C>{
+  const DetailBookScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final DetailBookController controller = DetailBookController(bookUseCase: BookUseCaseImpl(repository: BookRepositoryImpl(bookApiClient: BookApiClientImpl(Dio()))));
+    final String isbn13 = Get.arguments["isbn13"];
     return Scaffold(
       appBar: AppBar(
         title: const Text("Detail Book"),

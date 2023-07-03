@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:my_profile/data/book/model/book.dart';
 import 'package:my_profile/presentation/detail_book/detail_book.dart';
 import 'package:my_profile/presentation/utils/AppLayout.dart';
+import 'package:my_profile/route/pages_binding.dart';
+import 'package:my_profile/route/routes.dart';
 
 class BookItem extends StatelessWidget {
   final Book bookItem;
@@ -32,7 +34,7 @@ class BookItem extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: InkWell(
-          onTap: ()=>Get.to(DetailBookScreen(isbn13: bookItem.isbn13 ?? ""), transition: Transition.leftToRightWithFade),
+          onTap: ()=>Get.toNamed(Routes.detailBook,arguments: { "isbn13": bookItem.isbn13}),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

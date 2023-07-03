@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:my_profile/presentation/main/main_screen.dart';
-import 'package:my_profile/presentation/profile/profile_screen.dart';
+import 'package:my_profile/route/routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -51,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void _navigateToHome() async {
     await Future.delayed(const Duration(milliseconds: 5000));
     if (context.mounted) {
-      Get.offAll(()=>const MainScreen(), transition: Transition.leftToRightWithFade);
+      Get.offAllNamed(Routes.main);
       // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MainScreen()));
     }
   }

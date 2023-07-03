@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_profile/presentation/splash/splash_screen.dart';
 import 'package:dynamic_color/dynamic_color.dart';
+import 'package:my_profile/route/pages_binding.dart';
+import 'package:my_profile/route/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,7 +48,8 @@ class MyApp extends StatelessWidget {
             fontFamily: GoogleFonts.rubik().fontFamily,
             useMaterial3: true,
           ),
-          home: const SplashScreen(),
+          initialRoute: Routes.splash,
+          getPages: Pages.pages,
         );
       },
     );

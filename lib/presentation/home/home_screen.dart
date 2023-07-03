@@ -2,28 +2,20 @@ import 'package:auto_height_grid_view/auto_height_grid_view.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_profile/data/book/data_source/remote/book_api_client_impl.dart';
-import 'package:my_profile/data/book/repository/book_repository_impl.dart';
-import 'package:my_profile/data/data_state.dart';
-import 'package:my_profile/domain/book/use_case/book_use_case_impl.dart';
 import 'package:my_profile/presentation/component/book_item.dart';
 import 'package:my_profile/presentation/component/book_skeleton.dart';
-import 'package:my_profile/presentation/component/skeleton.dart';
 import 'package:my_profile/presentation/home/home_controller.dart';
 import 'package:my_profile/presentation/search_book/search_book.dart';
 import 'package:my_profile/presentation/utils/AppLayout.dart';
+import 'package:my_profile/route/routes.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen<C extends HomeController> extends GetView<C> {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
   Widget build(BuildContext context) {
-    final HomeController controller = HomeController(bookUseCase: BookUseCaseImpl(repository: BookRepositoryImpl(bookApiClient: BookApiClientImpl(Dio()))));
+    // HomeController controller = Get.find();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Hei, Yusuf"),
@@ -39,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
               margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: InkWell(
-                onTap: ()=>Get.to(()=>const SearchBookScreen(), transition: Transition.leftToRightWithFade),
+                onTap: ()=>Get.toNamed(Routes.searchBook),
                 child: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   child: Row(
@@ -48,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text(
                         'Search your book...',
                         style:
-                            TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                       ),
                       Icon(
                         Icons.search,
@@ -183,4 +175,5 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
 }
